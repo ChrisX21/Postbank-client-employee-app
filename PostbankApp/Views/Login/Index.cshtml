@@ -7,34 +7,39 @@
 <head>
     <title>PostBank</title>
 </head>
-<body>
+<body style="background-color:burlywood">
     <form>
-        <label for="sale_percentage">sale_percentage: </label>
+        <label for="sale_percentage" ><b>Sale percentage:</b> </label>
         <input type="number" id="sale_percentage" name="sale_percentage" placeholder="69" max="100" min="1">
-        <label for="sale">%</label>
     </form>
     <div class="container">
-        <form>
-            <div class="row">
-                <div class="col">
-                    <div class="form-outline datepicker-startdate" data-mdb-format="mmm dd, yyyy">
-                        <input type="text" class="form-control" id="startDate" />
-                        <label for="startDate" class="form-label">Select starting date</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline datepicker-enddate" data-mdb-format="mmm dd, yyyy">
-                        <input type="text" class="form-control" id="endDate" />
-                        <label for="endDate" class="form-label">Select ending date</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row text-center justify-content-center">
-                <div class="col-2 text-center">
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
-                </div>
-            </div>
-        </form>
+        <br><br>
+        <label><b>From Date</b></label>
+        <input type="date" name="" max="" id="fromDate" />
+        <br><br>
+        <label><b>To Date</b></label>
+        <input type="date" name="" min="" id="toDate" />
     </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var fromDate;
+        $('#fromDate').on('change', function () {
+            fromDate = $(this).val();
+            $('#toDate').prop('min', function () {
+                return fromDate;
+            })
+        });
+        var toDate;
+        $('#toDate').on('change', function () {
+            fromDate = $(this).val();
+            $('#fromDate').prop('max', function () {
+                return fromDate;
+            })
+        });
+    </script>
+    <br><br>
+        <button name="create" type="button" value="Create" autofocus onclick="alert('Request sent. Please wait for a response from the bank.')" style="background-color:white; color:black;">
+            <b>Create sale</b>
+        </button>
 </body>
 </html>
