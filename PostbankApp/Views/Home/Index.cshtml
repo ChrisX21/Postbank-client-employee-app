@@ -2,7 +2,32 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+<head>
+    <title>Button</title>
+    <style>
+        button {
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        #buttonOne {
+            position: fixed;
+            top: 40%;
+            left: 46.1%;
+        }
+
+        #buttonTwo {
+            position: fixed;
+            top: 50%;
+            left: 45.5%;
+        }
+    </style>
+</head>
+<body>
+    <button id="buttonOne" onclick="window.location.href = 'https://localhost:44361/Home/Privacy';">Login</button>
+    <button id="buttonTwo"onclick="window.location.href = 'https://localhost:44361/Home/Privacy';">Register</button>
+</body>
+</html>
