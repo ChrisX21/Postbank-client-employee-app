@@ -31,14 +31,19 @@ namespace PostbankApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+          services.AddDbContext<AppDBContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("AppDBContext")));
+
             services.AddDbContext<DWHDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DWHConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<AppDBContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
