@@ -36,11 +36,5 @@
 
 #output folder and obj output foler
 bin/
-bin-int/
+obj/
 
-# Visual Studio Solution
-*.sln
-
-#Visual Studio Project files
-*.csproj
-*.csproj.user

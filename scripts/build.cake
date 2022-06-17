@@ -24,10 +24,10 @@ Task("Clean")
     });
 
 Task("Build")
-.IsDependentOn("Clean")
-.Does(() => {
-    DotNetBuild(solutionFile, buildSettings);
-});
+    .IsDependentOn("Clean")
+    .Does(() => {
+        DotNetBuild(solutionFile, buildSettings);
+    });
 
 
 
