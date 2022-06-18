@@ -9,8 +9,23 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+ <h5><b>Here you can see all of your sales. You can:</b></h5>
+    <label for="options">Choose a filtering method by status:</label>
+
+    <select id="options">
+        <option value="active">Active</option>
+        <option value="expired">Expired</option>
+        <option value="rejected">Rejected</option>
+        <option value="waiting">Waiting</option>
+    </select>
+    <label for="options">Choose a filtering method by Date:</label>
+
+    <select id="options">
+        <option value="descending">Descending</option>
+        <option value="ascending">Ascending</option>
+    </select>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.SaleValue)
@@ -29,7 +44,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="bg-light">
             <td>
                 @Html.DisplayFor(modelItem => item.SaleValue)
             </td>
@@ -43,8 +58,6 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

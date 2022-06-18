@@ -13,28 +13,103 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="SaleValue" class="control-label"></label>
-                <input asp-for="SaleValue" class="form-control" />
+                <label asp-for="SaleValue"><b>Sale percentage:</b> </label>
+                <input asp-for="SaleValue" type="number" class="form-control" placeholder="40" max="100" min="1">
                 <span asp-validation-for="SaleValue" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
+                <label asp-for="StartDate"><b>From Date</b></label>
+                <input asp-for="StartDate" class="form-control" type="date" max="" id="fromDate" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
+                <br><br>
+                <label asp-for="EndDate"><b>To Date</b></label>
+                <input asp-for="EndDate" class="form-control" type="date" min="" id="toDate" />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var fromDate;
+        $('#fromDate').on('change', function () {
+            fromDate = $(this).val();
+            $('#toDate').prop('min', function () {
+                return fromDate;
+            })
+        });
+        var toDate;
+        $('#toDate').on('change', function () {
+            fromDate = $(this).val();
+            $('#fromDate').prop('max', function () {
+                return fromDate;
+            })
+          
+        });
+    </script>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+    </style>
         </form>
     </div>
 </div>
@@ -42,6 +117,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
