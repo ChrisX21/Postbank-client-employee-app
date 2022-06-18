@@ -16,6 +16,7 @@ namespace PostbankApp.Controllers
 
         public SalesController(AppDBContext context)
         {
+            //_context.Sale.Where(x => new DateTime(x.))
             _context = context;
         }
 
