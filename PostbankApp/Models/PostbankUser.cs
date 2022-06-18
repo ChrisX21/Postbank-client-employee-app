@@ -9,6 +9,9 @@ namespace PostbankApp.Models
     public class PostbankUser : IdentityUser
     {
         public DateTime RegisterDate { get; set; }
-        public PostbankUser() { }
+        public UserRoles Roles { get; set;   }
+
+        public PostbankUser()
+            : base() { }
     }
 }
