@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PostbankApp.Models
 {
-    public class Saler : PostbankUser
+    public class PostbankUser : IdentityUser
     {
-        public Saler() { }
+        public DateTime RegisterDate { get; set; }
+        public PostbankUser() { }
     }
 }

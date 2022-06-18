@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PostbankApp.Models
 {
-    public class Saler : PostbankUser
+    public class Employee : PostbankUser
     {
-        public Saler() { }
+        public Employee() { }
     }
 }

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace PostbankApp.Models
 {
-    public class Saler : PostbankUser
+    public class CardUser : PostbankUser
     {
-        public Saler() { }
+        public int CardNumber { get; set; }
+
+        public CardUser() { }
     }
 }
