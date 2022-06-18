@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PostbankApp.Migrations
+namespace PostbankApp.Migrations.AppDB
 {
-    public partial class testsetup : Migration
+    public partial class myass : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,10 @@ namespace PostbankApp.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    RegisterDate = table.Column<DateTime>(nullable: true),
+                    CardNumber = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -47,16 +50,19 @@ namespace PostbankApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Test",
+                name: "Sale",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Id = table.Column<string>(nullable: false),
+                    SalerId = table.Column<string>(nullable: true),
+                    SaleValue = table.Column<int>(nullable: false),
+                    StartDate = table.Column<string>(nullable: true),
+                    EndDate = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Test", x => x.Id);
+                    table.PrimaryKey("PK_Sale", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -223,7 +229,7 @@ namespace PostbankApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Test");
+                name: "Sale");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -14,10 +14,10 @@ namespace PostbankApp.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ConfirmEmailChangeModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Models.PostbankUser> _userManager;
+        private readonly SignInManager<Models.PostbankUser> _signInManager;
 
-        public ConfirmEmailChangeModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public ConfirmEmailChangeModel(UserManager<Models.PostbankUser> userManager, SignInManager<Models.PostbankUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

@@ -11,12 +11,12 @@ namespace PostbankApp.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Models.PostbankUser> _userManager;
+        private readonly SignInManager<Models.PostbankUser> _signInManager;
 
         public SetPasswordModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<Models.PostbankUser> userManager,
+            SignInManager<Models.PostbankUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
