@@ -8,6 +8,7 @@ namespace PostbankApp.Models
 {
     public class Employee : PostbankUser
     {
-        public Employee() { }
+        public Employee() 
+            : base() { }
     }
 }

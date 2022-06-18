@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace PostbankApp.Models
 {
-    public class Saler : PostbankUser
+    public enum UserRoles 
     {
-        public Saler() 
-            : base() { }
+        Employee = 0,
+        Seller,
+        CardUser
+    }
+
+    public class PostbankUserRole : IdentityRole
+    {
+        public PostbankUserRole() { }
     }
 }
