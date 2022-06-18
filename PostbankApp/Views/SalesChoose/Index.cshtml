@@ -6,11 +6,31 @@
 <head>
     <title>PostBank</title>
 </head>
+<style>
+    button {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 20px;
+    }
+
+    #buttonOne {
+        position: fixed;
+        top: 40%;
+        left: 46.1%;
+    }
+
+    #buttonTwo {
+        position: fixed;
+        top: 50%;
+        left: 45.5%;
+    }
+</style>
     <body style="background-color: burlywood">
         <h4><b>Click on "Create a new sale" to create a new sale or click on "Open existing sales" to open existing sales</b></h4>
         <br />
         <div class="text-center">
-            <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/CreateSale">Create a new sale</a>
-            <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/OpenExisting">Open existing sales</a>
+            <a class="btn btn-light nav-link padding-bot" asp-area="Identity" asp-page="/Account/CreateSale">Create a new sale</a>
+            <a class="btn btn-light nav-link" asp-area="Identity" asp-page="/Account/OpenExisting">Open existing sales</a>
         </div>
     </body>

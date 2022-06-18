@@ -157,3 +157,18 @@ input:checked + .slider:before {
     float: left;
     border: 1px solid green;
 }
+.padding-bot {
+    margin-bottom: 5px;
+}
+
+.padding-left {
+    margin-left: 5px;
+}
+
+.padding-right {
+    margin-right: 5px;
+}
+
+.padding-top {
+    margin-top: 5px;
+}
