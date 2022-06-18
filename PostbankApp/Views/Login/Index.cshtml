@@ -5,31 +5,36 @@
 }
 <html>
 <head>
-    <title>Button</title>
-    <style>
-        button
-        {
-            font-size: 20px;
-            padding:10px;
-            border-radius: 10px;
-            margin:20px;
-        }
-
-        #buttonOne {
-            position: fixed;
-            top: 40%;
-            left: 46.1%;
-        }
-        #buttonTwo
-        {
-            position:fixed;
-            top:50%;
-            left:45.5%;
-        }
-    </style>
+    <title>PostBank</title>
 </head>
 <body>
-        <button id="buttonOne" onclick="window.location.href = 'https://localhost:44361/Home/Privacy';">Login</button>
-        <button id="buttonTwo">Register</button>
+    <form>
+        <label for="sale_percentage">sale_percentage: </label>
+        <input type="number" id="sale_percentage" name="sale_percentage" placeholder="69" max="100" min="1">
+        <label for="sale">%</label>
+    </form>
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col">
+                    <div class="form-outline datepicker-startdate" data-mdb-format="mmm dd, yyyy">
+                        <input type="text" class="form-control" id="startDate" />
+                        <label for="startDate" class="form-label">Select starting date</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline datepicker-enddate" data-mdb-format="mmm dd, yyyy">
+                        <input type="text" class="form-control" id="endDate" />
+                        <label for="endDate" class="form-label">Select ending date</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center justify-content-center">
+                <div class="col-2 text-center">
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
