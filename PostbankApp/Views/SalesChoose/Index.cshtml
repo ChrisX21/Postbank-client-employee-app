@@ -6,31 +6,11 @@
 <head>
     <title>PostBank</title>
 </head>
-    <head>
-        <style>
-            .btn-group .button {
-                background-color:white;
-                border: none;
-                color: black;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                cursor: pointer;
-                float: left;
-            }
-
-                .btn-group .button:hover {
-                    background-color: gray;
-                }
-        </style>
-    </head>
     <body style="background-color: burlywood">
-        <label><b>Click on "Create new sale" to create a request for a new sale or click on "Open existing sales" to see your active sales</b></label>
+        <h4><b>Click on "Create a new sale" to create a new sale or click on "Open existing sales" to open existing sales</b></h4>
         <br />
-        <div class="btn-group">
-            <button class="button">Create a new sale</button>
-            <button class="button">Open existing sales</button>
+        <div class="text-center">
+            <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/CreateSale">Create a new sale</a>
+            <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/OpenExisting">Open existing sales</a>
         </div>
     </body>

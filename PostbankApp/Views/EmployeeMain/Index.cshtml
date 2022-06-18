@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+<head>
+    <style>
+        .btn-group .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            float: left;
+        }
+
+            .btn-group .button:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+</head>
+<body>
+    <br />
+    <br />
+    <div class="text-center">
+        <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/EmployeeSalers">Salers</a>
+        <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/EmployeeSales">Sales</a>
+        <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/POSTerminals">POS Terminals</a>
+        <a class="btn-success nav-link text-light border-light" asp-area="Identity" asp-page="/Account/Approval">Waiting for approval</a>
+    </div>
+</body>
+</html>
