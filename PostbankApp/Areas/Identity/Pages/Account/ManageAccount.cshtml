@@ -13,11 +13,11 @@
             height: 24px;
         }
 
-        .switch input { 
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
 
         .slider {
             position: absolute;
@@ -31,17 +31,17 @@
             transition: .4s;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 2px;
-            bottom: 2px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 20px;
+                width: 20px;
+                left: 2px;
+                bottom: 2px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
 
         input:checked + .slider {
             background-color: #2196F3;
@@ -62,12 +62,12 @@
             border-radius: 34px;
         }
 
-        .slider.round:before {
-            border-radius: 50%;
-        }
+            .slider.round:before {
+                border-radius: 50%;
+            }
     </style>
     <label>Toggle notifications (get sent an email every wednesday at 7:30 containing the newest sales you might have missed)</label>
-    <label class="switch" >
+    <label class="switch">
         <input type="checkbox" id="ToggleNotificationsButton">
         <span class="slider round"></span>
     </label>
@@ -79,5 +79,7 @@
         }
     </script>
     <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/ResetPassword">Change password</a>
-    <a class="nav-link text-danger" asp-area="Identity" asp-page="/Account/Logout">Log out</a>
+    <form class="form-inline nav-link text-danger" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" class="btn text-danger">Log out</button>
+    </form>
 </div>
