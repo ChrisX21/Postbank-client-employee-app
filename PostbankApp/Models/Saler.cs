@@ -8,6 +8,7 @@ namespace PostbankApp.Models
 {
     public class Saler : PostbankUser
     {
-        public Saler() { }
+        public Saler() 
+            : base() { }
     }
 }

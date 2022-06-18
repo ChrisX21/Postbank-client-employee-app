@@ -48,6 +48,7 @@ namespace PostbankApp
                 options.Password.RequiredLength = 8;
             });
 
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -69,7 +70,7 @@ namespace PostbankApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();

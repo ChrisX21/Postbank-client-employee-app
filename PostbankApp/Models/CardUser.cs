@@ -10,6 +10,7 @@ namespace PostbankApp.Models
     {
         public int CardNumber { get; set; }
 
-        public CardUser() { }
+        public CardUser() 
+            : base() { }
     }
 }

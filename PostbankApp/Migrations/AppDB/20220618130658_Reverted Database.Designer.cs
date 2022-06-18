@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PostbankApp.Data;
 
-namespace PostbankApp.Migrations
+namespace PostbankApp.Migrations.AppDB
 {
-    [DbContext(typeof(DWHDbContext))]
-    partial class DWHDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AppDBContext))]
+    [Migration("20220618130658_Reverted Database")]
+    partial class RevertedDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,6 +28,10 @@ namespace PostbankApp.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -44,6 +50,8 @@ namespace PostbankApp.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -203,9 +211,6 @@ namespace PostbankApp.Migrations
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Roles")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -229,6 +234,23 @@ namespace PostbankApp.Migrations
                     b.ToTable("Users");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("PostbankUser");
+                });
+
+            modelBuilder.Entity("PostbankApp.Models.PostbankUserRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.HasDiscriminator().HasValue("PostbankUserRole");
+                });
+
+            modelBuilder.Entity("PostbankApp.Models.CardUser", b =>
+                {
+                    b.HasBaseType("PostbankApp.Models.PostbankUser");
+
+                    b.Property<int>("CardNumber")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("CardUser");
                 });
 
             modelBuilder.Entity("PostbankApp.Models.Employee", b =>
