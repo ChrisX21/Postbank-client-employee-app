@@ -35,7 +35,7 @@ namespace PostbankApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DWHConnection")));
 
-            services.AddDefaultIdentity<Models.PostbankUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Models.PostbankUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddRoles<Models.PostbankUserRole>()
                 .AddEntityFrameworkStores<AppDBContext>();
 

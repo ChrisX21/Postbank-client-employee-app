@@ -10,8 +10,8 @@ using PostbankApp.Data;
 namespace PostbankApp.Migrations.AppDB
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20220618111658_Renamed Base Types")]
-    partial class RenamedBaseTypes
+    [Migration("20220618175351_Rebuild App Database")]
+    partial class RebuildAppDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,10 @@ namespace PostbankApp.Migrations.AppDB
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -46,6 +50,8 @@ namespace PostbankApp.Migrations.AppDB
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -205,6 +211,9 @@ namespace PostbankApp.Migrations.AppDB
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Roles")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -228,6 +237,38 @@ namespace PostbankApp.Migrations.AppDB
                     b.ToTable("Users");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("PostbankUser");
+                });
+
+            modelBuilder.Entity("PostbankApp.Models.Sale", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("EndDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SaleValue")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SalerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("PostbankApp.Models.PostbankUserRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.HasDiscriminator().HasValue("PostbankUserRole");
                 });
 
             modelBuilder.Entity("PostbankApp.Models.CardUser", b =>

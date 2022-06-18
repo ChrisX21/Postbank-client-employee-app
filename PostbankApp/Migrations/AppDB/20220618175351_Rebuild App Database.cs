@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PostbankApp.Migrations.AppDB
 {
-    public partial class RenamedBaseTypes : Migration
+    public partial class RebuildAppDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,11 +14,28 @@ namespace PostbankApp.Migrations.AppDB
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    SalerId = table.Column<string>(nullable: true),
+                    SaleValue = table.Column<int>(nullable: false),
+                    StartDate = table.Column<string>(nullable: true),
+                    EndDate = table.Column<string>(nullable: true),
+                    Status = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -41,6 +58,7 @@ namespace PostbankApp.Migrations.AppDB
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
+                    Roles = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     CardNumber = table.Column<int>(nullable: true)
                 },
@@ -199,6 +217,9 @@ namespace PostbankApp.Migrations.AppDB
         {
             migrationBuilder.DropTable(
                 name: "RoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "Sales");
 
             migrationBuilder.DropTable(
                 name: "UserClaims");

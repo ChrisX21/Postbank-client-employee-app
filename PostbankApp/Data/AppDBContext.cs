@@ -18,6 +18,8 @@ namespace PostbankApp.Data
         public DbSet<Saler> Salers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<CardUser> CardUsers { get; set; }
+        public DbSet<PostbankApp.Models.Sale> Sale { get; set; }
+        
         public DbSet<PostbankUserRole> PostbankUserRole { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -29,10 +31,13 @@ namespace PostbankApp.Data
                 entity.ToTable("Users");
             });
 
+            builder.Entity<Sale>(entity => entity.ToTable("Sales"));
+
             builder.Entity<IdentityRole>(entity =>
             {
                 entity.ToTable("Roles");
             });
+
             builder.Entity<IdentityUserRole<string>>(entity =>
             {
                 entity.ToTable("UserRoles");
