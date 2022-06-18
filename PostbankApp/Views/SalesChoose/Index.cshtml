@@ -3,17 +3,34 @@
 *@
 @{
 }
-<html>
 <head>
     <title>PostBank</title>
 </head>
-<body style="background-color:burlywood">
-    <p><b>Click on "Create new sale" to create a request for a new sale or click on "Open existing sales" to see your active sales</b></p>
-    <button name="create_button" type="button" value="Create" autofocus onclick="window.location.href = 'https://localhost:44361/Login';" style="background-color: white; color: black; top: 25%; position: fixed;">
-        <b>Create new sale</b>
-    </button>
-    <button name="open_existing_button" type="button" value="Open" autofocus onclick="window.location.href = 'https://localhost:44361/ExistingSales';" style="background-color: white; color: black; top: 25%; left: 48%; position: fixed;">
-        <b>Open existing sales</b>
-    </button>
-</body>
-</html>
+    <head>
+        <style>
+            .btn-group .button {
+                background-color:white;
+                border: none;
+                color: black;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                float: left;
+            }
+
+                .btn-group .button:hover {
+                    background-color: gray;
+                }
+        </style>
+    </head>
+    <body style="background-color: burlywood">
+        <label><b>Click on "Create new sale" to create a request for a new sale or click on "Open existing sales" to see your active sales</b></label>
+        <br />
+        <div class="btn-group">
+            <button class="button">Create a new sale</button>
+            <button class="button">Open existing sales</button>
+        </div>
+    </body>
