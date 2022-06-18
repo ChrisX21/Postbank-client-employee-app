@@ -1,28 +1,59 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using System.Collections.Generic;
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using System.Collections.Generic
+@using PostbankApp.Models
+@inject SignInManager<PostbankUser> SignInManager
+@inject UserManager<PostbankUser> UserManager
+@model IEnumerable<PostbankApp.Models.Sale>
 
 @{
     ViewData["Title"] = "Home Page";
+    int counter = 0;
 }
+
 
 <div class="text-center">
     <!--TODO: check if user is client or seller -->
-    
+
     @if (SignInManager.IsSignedIn(User))
     {
-        
-        <!--TODO: make drop down for table:
- <table border ="2">
-        <tr>
-            <th>Merchant</th>
-            <th>Active sales</th>
-            <th>Start-End dates</th>
-        </tr>
-                                                   </table>-->
-        
-        <!--TODO: make a foreach merchant to print sales-->
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Vendor name</th>
+                <th scope="col">Sale in %</th>
+                <th scope="col">Start date</th>
+                <th scope="col">End date</th>
+            </tr>
+            </thead>
+            <tbody>
+                
+
+            @foreach (var sale in Model)
+            {
+                counter++;
+                <tr>
+                    <th>counter</th>
+                    <td>
+                        @Html.DisplayFor(x => UserManager.FindByIdAsync(sale.SalerId).Result.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => sale.SaleValue)%
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => sale.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => sale.EndDate)
+                    </td>
+                </tr>
+
+            }
+            
+                
+            </tbody>
+        </table>
+
     }
     else
     {
@@ -37,8 +68,8 @@
             </div>
         </div>
 
-        <div class="card-columns mt-5" >
-            <div class="card" >
+        <div class="card-columns mt-5">
+            <div class="card">
                 <img class="card-img-top" src="https://cdn.pixabay.com/photo/2014/02/01/18/01/money-256319_960_720.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Lorem ipsum</h5>
@@ -46,8 +77,8 @@
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-        
-            <div class="card" >
+
+            <div class="card">
                 <img class="card-img-top" src="https://cdn.pixabay.com/photo/2016/10/10/22/37/credit-card-1730085_960_720.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Lorem ipsum</h5>
@@ -55,7 +86,7 @@
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-      
+
             <div class="card">
                 <img class="card-img-top" src="https://cdn.pixabay.com/photo/2016/05/31/20/39/online-marketing-1427787_960_720.jpg" alt="Card image cap">
                 <div class="card-body">
@@ -65,7 +96,7 @@
                 </div>
             </div>
         </div>
-      
+
 
     }
 
