@@ -30,16 +30,6 @@ namespace PostbankApp.Data
                 entity.ToTable("Users");
             });
 
-            /*builder.Entity<Saler>(entity => 
-            {
-                entity.ToTable("Salers");
-            });
-
-            builder.Entity<Employee>(entity =>
-            {
-                entity.ToTable("Employees");
-            });*/
-
             builder.Entity<IdentityRole>(entity =>
             {
                 entity.ToTable("Roles");

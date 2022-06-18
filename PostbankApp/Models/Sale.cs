@@ -1,5 +1,12 @@
 ﻿namespace PostbankApp.Models
 {
+    public enum SaleStatus
+    {
+        Active = 0,
+        Expired,
+        Rejected,
+        Waiting
+    }
     public class Sale
     {
         public string Id { get; set; }

@@ -75,6 +75,7 @@ namespace PostbankApp.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new Models.PostbankUser { UserName = Input.Email, Email = Input.Email };
+                user.Roles = Models.UserRoles.CardUser;
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
