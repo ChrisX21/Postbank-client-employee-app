@@ -30,10 +30,16 @@ namespace PostbankApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<AppDBContext>(options =>
+
+          services.AddDbContext<AppDBContext>(options =>
                options.UseSqlServer(
                    Configuration.GetConnectionString("AppDBContext")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+            services.AddDbContext<DWHDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DWHConnection")));
+
+            services.AddDefaultIdentity<Models.PostbankUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AppDBContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();

@@ -11,13 +11,13 @@ namespace PostbankApp.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<Models.PostbankUser> _userManager;
+        private readonly SignInManager<Models.PostbankUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
 
         public ChangePasswordModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<Models.PostbankUser> userManager,
+            SignInManager<Models.PostbankUser> signInManager,
             ILogger<ChangePasswordModel> logger)
         {
             _userManager = userManager;

@@ -16,25 +16,25 @@ using Microsoft.Extensions.Logging;
 
 namespace PostbankApp.Areas.Identity.Pages.Account
 {
-[AllowAnonymous]
-public class RegisterModel : PageModel
-{
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly ILogger<RegisterModel> _logger;
-    private readonly IEmailSender _emailSender;
-
-    public RegisterModel(
-        UserManager<IdentityUser> userManager,
-        SignInManager<IdentityUser> signInManager,
-        ILogger<RegisterModel> logger,
-        IEmailSender emailSender)
+    [AllowAnonymous]
+    public class RegisterModel : PageModel
     {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _logger = logger;
-        _emailSender = emailSender;
-    }
+        private readonly SignInManager<Models.PostbankUser> _signInManager;
+        private readonly UserManager<Models.PostbankUser> _userManager;
+        private readonly ILogger<RegisterModel> _logger;
+        private readonly IEmailSender _emailSender;
+
+        public RegisterModel(
+            UserManager<Models.PostbankUser> userManager,
+            SignInManager<Models.PostbankUser> signInManager,
+            ILogger<RegisterModel> logger,
+            IEmailSender emailSender)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
+            _emailSender = emailSender;
+        }
 
     [BindProperty]
     public InputModel Input { get; set; }
@@ -68,17 +68,17 @@ public class RegisterModel : PageModel
         ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
     }
 
-    public async Task<IActionResult> OnPostAsync(string returnUrl = null)
-    {
-        returnUrl = returnUrl ?? Url.Content("~/");
-        ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        if (ModelState.IsValid)
+        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
-            var result = await _userManager.CreateAsync(user, Input.Password);
-            if (result.Succeeded)
+            returnUrl = returnUrl ?? Url.Content("~/");
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (ModelState.IsValid)
             {
-                _logger.LogInformation("User created a new account with password.");
+                var user = new Models.PostbankUser { UserName = Input.Email, Email = Input.Email };
+                var result = await _userManager.CreateAsync(user, Input.Password);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User created a new account with password.");
 
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

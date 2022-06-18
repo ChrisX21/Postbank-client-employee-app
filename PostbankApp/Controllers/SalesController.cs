@@ -10,85 +10,85 @@ using PostbankApp.Models;
 
 namespace PostbankApp.Controllers
 {
-    public class SailersController : Controller
+    public class SalesController : Controller
     {
         private readonly AppDBContext _context;
 
-        public SailersController(AppDBContext context)
+        public SalesController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: Sailers
+        // GET: Sales
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sailer.ToListAsync());
+            return View(await _context.Sale.ToListAsync());
         }
 
-        // GET: Sailers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Sales/Details/5
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sailer = await _context.Sailer
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (sailer == null)
+            var sale = await _context.Sale
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(sailer);
+            return View(sale);
         }
 
-        // GET: Sailers/Create
+        // GET: Sales/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Sailers/Create
+        // POST: Sales/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID")] Sailer sailer)
+        public async Task<IActionResult> Create([Bind("Id,SalerId,SaleValue,StartDate,EndDate,Status")] Sale sale)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(sailer);
+                _context.Add(sale);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sailer);
+            return View(sale);
         }
 
-        // GET: Sailers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Sales/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sailer = await _context.Sailer.FindAsync(id);
-            if (sailer == null)
+            var sale = await _context.Sale.FindAsync(id);
+            if (sale == null)
             {
                 return NotFound();
             }
-            return View(sailer);
+            return View(sale);
         }
 
-        // POST: Sailers/Edit/5
+        // POST: Sales/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Sailer sailer)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,SalerId,SaleValue,StartDate,EndDate,Status")] Sale sale)
         {
-            if (id != sailer.ID)
+            if (id != sale.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace PostbankApp.Controllers
             {
                 try
                 {
-                    _context.Update(sailer);
+                    _context.Update(sale);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SailerExists(sailer.ID))
+                    if (!SaleExists(sale.Id))
                     {
                         return NotFound();
                     }
@@ -113,41 +113,41 @@ namespace PostbankApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sailer);
+            return View(sale);
         }
 
-        // GET: Sailers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Sales/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sailer = await _context.Sailer
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (sailer == null)
+            var sale = await _context.Sale
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(sailer);
+            return View(sale);
         }
 
-        // POST: Sailers/Delete/5
+        // POST: Sales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var sailer = await _context.Sailer.FindAsync(id);
-            _context.Sailer.Remove(sailer);
+            var sale = await _context.Sale.FindAsync(id);
+            _context.Sale.Remove(sale);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SailerExists(int id)
+        private bool SaleExists(string id)
         {
-            return _context.Sailer.Any(e => e.ID == id);
+            return _context.Sale.Any(e => e.Id == id);
         }
     }
 }

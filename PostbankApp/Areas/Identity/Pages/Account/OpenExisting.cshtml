@@ -1,0 +1,23 @@
+﻿@page
+@model PostbankApp.Areas.Identity.Pages.Account.OpenExistingModel
+@{
+}
+<html>
+<body style="background-color:burlywood">
+    <h5><b>Here you can see all of your sales. You can:</b></h5>
+    <label for="options">Choose a filtering method by status:</label>
+
+    <select id="options">
+        <option value="active">Active</option>
+        <option value="expired">Expired</option>
+        <option value="rejected">Rejected</option>
+        <option value="waiting">Waiting</option>
+    </select>
+    <label for="options">Choose a filtering method by Date:</label>
+
+    <select id="options">
+        <option value="descending">Descending</option>
+        <option value="ascending">Ascending</option>
+    </select>
+</body>
+</html>
