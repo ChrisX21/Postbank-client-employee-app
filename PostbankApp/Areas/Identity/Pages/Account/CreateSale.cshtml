@@ -1,4 +1,5 @@
 ﻿@page
+@using Newtonsoft.Json
 @model PostbankApp.Areas.Identity.Pages.Account.CreateSaleModel
 @{
 }
@@ -36,9 +37,12 @@
             $('#fromDate').prop('max', function () {
                 return fromDate;
             })
+          
         });
         
     </script>
+    <div style="display: none;" id="uniqueDivIdName" data-id="@JsonConvert.SerializeObject(@Model)" />
+<script var dataFromView = $("#uniqueDivIdName").data("id");></script>
     <br><br>
     <button name="create" type="button" value="Create" autofocus onclick="alert('Request sent. Please wait for a response from the bank.')" style="background-color:white; color:black;">
         <b>Create sale</b>

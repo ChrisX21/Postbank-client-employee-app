@@ -26,7 +26,7 @@ namespace PostbankApp.Controllers
         }
 
         // GET: Sales/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -54,7 +54,7 @@ namespace PostbankApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SalerId,SaleValue,StartDate,EndDate,Status")] Sale sale)
+        public async Task<IActionResult> Create([Bind("Id,SaleValue,StartDate,EndDate,Status")] Sale sale)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace PostbankApp.Controllers
         }
 
         // GET: Sales/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace PostbankApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,SalerId,SaleValue,StartDate,EndDate,Status")] Sale sale)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SaleValue,StartDate,EndDate,Status")] Sale sale)
         {
             if (id != sale.Id)
             {
@@ -117,7 +117,7 @@ namespace PostbankApp.Controllers
         }
 
         // GET: Sales/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace PostbankApp.Controllers
         // POST: Sales/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var sale = await _context.Sale.FindAsync(id);
             _context.Sale.Remove(sale);
@@ -145,7 +145,7 @@ namespace PostbankApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SaleExists(string id)
+        private bool SaleExists(int id)
         {
             return _context.Sale.Any(e => e.Id == id);
         }
