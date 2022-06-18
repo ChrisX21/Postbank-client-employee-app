@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using System.Collections.Generic;
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using PostbankApp.Models
+@inject SignInManager<PostbankUser> SignInManager
+@inject UserManager<PostbankUser> UserManager
 
 @{
     ViewData["Title"] = "Home Page";
