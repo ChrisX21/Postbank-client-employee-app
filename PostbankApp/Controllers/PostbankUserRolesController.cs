@@ -10,23 +10,22 @@ using PostbankApp.Models;
 
 namespace PostbankApp.Controllers
 {
-    public class SalesController : Controller
+    public class PostbankUserRolesController : Controller
     {
         private readonly AppDBContext _context;
 
-        public SalesController(AppDBContext context)
+        public PostbankUserRolesController(AppDBContext context)
         {
-            //_context.Sale.Where(x => new DateTime(x.))
             _context = context;
         }
 
-        // GET: Sales
+        // GET: PostbankUserRoles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sale.ToListAsync());
+            return View(await _context.PostbankUserRole.ToListAsync());
         }
 
-        // GET: Sales/Details/5
+        // GET: PostbankUserRoles/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -34,39 +33,39 @@ namespace PostbankApp.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale
+            var postbankUserRole = await _context.PostbankUserRole
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (sale == null)
+            if (postbankUserRole == null)
             {
                 return NotFound();
             }
 
-            return View(sale);
+            return View(postbankUserRole);
         }
 
-        // GET: Sales/Create
+        // GET: PostbankUserRoles/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Sales/Create
+        // POST: PostbankUserRoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SalerId,SaleValue,StartDate,EndDate,Status")] Sale sale)
+        public async Task<IActionResult> Create([Bind("Id,Name,NormalizedName,ConcurrencyStamp")] PostbankUserRole postbankUserRole)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(sale);
+                _context.Add(postbankUserRole);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sale);
+            return View(postbankUserRole);
         }
 
-        // GET: Sales/Edit/5
+        // GET: PostbankUserRoles/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -74,22 +73,22 @@ namespace PostbankApp.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale.FindAsync(id);
-            if (sale == null)
+            var postbankUserRole = await _context.PostbankUserRole.FindAsync(id);
+            if (postbankUserRole == null)
             {
                 return NotFound();
             }
-            return View(sale);
+            return View(postbankUserRole);
         }
 
-        // POST: Sales/Edit/5
+        // POST: PostbankUserRoles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,SalerId,SaleValue,StartDate,EndDate,Status")] Sale sale)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,NormalizedName,ConcurrencyStamp")] PostbankUserRole postbankUserRole)
         {
-            if (id != sale.Id)
+            if (id != postbankUserRole.Id)
             {
                 return NotFound();
             }
@@ -98,12 +97,12 @@ namespace PostbankApp.Controllers
             {
                 try
                 {
-                    _context.Update(sale);
+                    _context.Update(postbankUserRole);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SaleExists(sale.Id))
+                    if (!PostbankUserRoleExists(postbankUserRole.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +113,10 @@ namespace PostbankApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sale);
+            return View(postbankUserRole);
         }
 
-        // GET: Sales/Delete/5
+        // GET: PostbankUserRoles/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -125,30 +124,30 @@ namespace PostbankApp.Controllers
                 return NotFound();
             }
 
-            var sale = await _context.Sale
+            var postbankUserRole = await _context.PostbankUserRole
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (sale == null)
+            if (postbankUserRole == null)
             {
                 return NotFound();
             }
 
-            return View(sale);
+            return View(postbankUserRole);
         }
 
-        // POST: Sales/Delete/5
+        // POST: PostbankUserRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var sale = await _context.Sale.FindAsync(id);
-            _context.Sale.Remove(sale);
+            var postbankUserRole = await _context.PostbankUserRole.FindAsync(id);
+            _context.PostbankUserRole.Remove(postbankUserRole);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SaleExists(string id)
+        private bool PostbankUserRoleExists(string id)
         {
-            return _context.Sale.Any(e => e.Id == id);
+            return _context.PostbankUserRole.Any(e => e.Id == id);
         }
     }
 }

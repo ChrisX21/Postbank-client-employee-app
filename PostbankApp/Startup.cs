@@ -27,10 +27,6 @@ namespace PostbankApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
           services.AddDbContext<AppDBContext>(options =>
                options.UseSqlServer(
                    Configuration.GetConnectionString("AppDBContext")));
@@ -39,8 +35,20 @@ namespace PostbankApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DWHConnection")));
 
-            services.AddDefaultIdentity<Models.PostbankUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<Models.PostbankUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<Models.PostbankUserRole>()
                 .AddEntityFrameworkStores<AppDBContext>();
+
+            services.Configure<IdentityOptions>(options => 
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequiredLength = 8;
+            });
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -62,7 +70,7 @@ namespace PostbankApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();
