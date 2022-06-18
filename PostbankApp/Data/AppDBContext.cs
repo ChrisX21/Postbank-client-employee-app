@@ -17,5 +17,6 @@ namespace PostbankApp.Data
         public DbSet<Saler> Salers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<CardUser> CardUsers { get; set; }
+        public DbSet<PostbankApp.Models.Sale> Sale { get; set; }
     }
 }
