@@ -10,85 +10,85 @@ using PostbankApp.Models;
 
 namespace PostbankApp.Controllers
 {
-    public class SailersController : Controller
+    public class PostbankUserRolesController : Controller
     {
         private readonly AppDBContext _context;
 
-        public SailersController(AppDBContext context)
+        public PostbankUserRolesController(AppDBContext context)
         {
             _context = context;
         }
 
-        // GET: Sailers
+        // GET: PostbankUserRoles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sailer.ToListAsync());
+            return View(await _context.PostbankUserRole.ToListAsync());
         }
 
-        // GET: Sailers/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: PostbankUserRoles/Details/5
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sailer = await _context.Sailer
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (sailer == null)
+            var postbankUserRole = await _context.PostbankUserRole
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (postbankUserRole == null)
             {
                 return NotFound();
             }
 
-            return View(sailer);
+            return View(postbankUserRole);
         }
 
-        // GET: Sailers/Create
+        // GET: PostbankUserRoles/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Sailers/Create
+        // POST: PostbankUserRoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID")] Sailer sailer)
+        public async Task<IActionResult> Create([Bind("Id,Name,NormalizedName,ConcurrencyStamp")] PostbankUserRole postbankUserRole)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(sailer);
+                _context.Add(postbankUserRole);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sailer);
+            return View(postbankUserRole);
         }
 
-        // GET: Sailers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: PostbankUserRoles/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sailer = await _context.Sailer.FindAsync(id);
-            if (sailer == null)
+            var postbankUserRole = await _context.PostbankUserRole.FindAsync(id);
+            if (postbankUserRole == null)
             {
                 return NotFound();
             }
-            return View(sailer);
+            return View(postbankUserRole);
         }
 
-        // POST: Sailers/Edit/5
+        // POST: PostbankUserRoles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID")] Sailer sailer)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,NormalizedName,ConcurrencyStamp")] PostbankUserRole postbankUserRole)
         {
-            if (id != sailer.ID)
+            if (id != postbankUserRole.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace PostbankApp.Controllers
             {
                 try
                 {
-                    _context.Update(sailer);
+                    _context.Update(postbankUserRole);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SailerExists(sailer.ID))
+                    if (!PostbankUserRoleExists(postbankUserRole.Id))
                     {
                         return NotFound();
                     }
@@ -113,41 +113,41 @@ namespace PostbankApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sailer);
+            return View(postbankUserRole);
         }
 
-        // GET: Sailers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: PostbankUserRoles/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var sailer = await _context.Sailer
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (sailer == null)
+            var postbankUserRole = await _context.PostbankUserRole
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (postbankUserRole == null)
             {
                 return NotFound();
             }
 
-            return View(sailer);
+            return View(postbankUserRole);
         }
 
-        // POST: Sailers/Delete/5
+        // POST: PostbankUserRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var sailer = await _context.Sailer.FindAsync(id);
-            _context.Sailer.Remove(sailer);
+            var postbankUserRole = await _context.PostbankUserRole.FindAsync(id);
+            _context.PostbankUserRole.Remove(postbankUserRole);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SailerExists(int id)
+        private bool PostbankUserRoleExists(string id)
         {
-            return _context.Sailer.Any(e => e.ID == id);
+            return _context.PostbankUserRole.Any(e => e.Id == id);
         }
     }
 }
